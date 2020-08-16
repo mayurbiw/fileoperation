@@ -51,10 +51,13 @@ else:
 
     od = collections.OrderedDict(sorted(file.items(),reverse= True))
 
+    #print(file)
     # printing files in  soreted order
+    print("The file names descending by date time")
+    print()
+
     for k, v in od.items():
-        print("The file names descending by date time")
-        print(datetime.datetime.fromtimestamp(k).strftime("%d %m %Y, %H:%M"), v.name)
+        print(v.name,datetime.datetime.fromtimestamp(k).strftime("%d %m %Y, %H:%M"))
 
     # renaming the files
     count = 1
@@ -62,7 +65,12 @@ else:
         filename, file_extension = os.path.splitext(entry.name)
         #print(path)
         os.rename(entry, "d:/Assignment/directory/cats/"+renamestring[0:len(renamestring)-1] + str(count) + file_extension)
+        file[k] = renamestring[0:len(renamestring)-1] + str(count) + file_extension
         count = count + 1
-        file[k] = renamestring + str(count) + file_extension
-        print("Files after renaming")
-        print(datetime.datetime.fromtimestamp(k).strftime("%d %m %Y, %H:%M"), entry.name)
+
+
+    print("The file names descending by date time")
+    print()
+    od = collections.OrderedDict(sorted(file.items(),reverse= True))
+    for k, v in od.items():
+        print(v,datetime.datetime.fromtimestamp(k).strftime("%d %m %Y, %H:%M"))
